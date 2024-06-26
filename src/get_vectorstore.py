@@ -1,3 +1,4 @@
+import streamlit as st
 from langchain.embeddings import HuggingFaceEmbeddings, OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 def get_vectorstore(text_chunks):

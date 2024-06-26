@@ -9,8 +9,15 @@ def get_pdf_text(file):
     Returns:
         str: The concatenated text content extracted from the PDF file.
     """
-    pdf_reader = PdfReader(file)
-    text = ""
-    for page in pdf_reader.pages:
-        text += page.extract_text()
-    return text
+    try:
+        pdf_reader = PdfReader(file)
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+        return text
+    except PermissionError as e:
+        raise PermissionError(f"Permission denied: {e}")
+    except ValueError as e:
+        raise ValueError(f"Error reading PDF file: {e}")
+    except Exception as e:
+        raise Exception(f"An unexpected error occurred: {e}")
